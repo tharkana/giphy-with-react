@@ -30,10 +30,12 @@ function App() {
       <CssBaseline />
       <AppBar position="relative">
         <Toolbar>
-          <CameraIcon sx={{ mr: 2 }} />
-          <Typography variant="h6" color="inherit" noWrap>
-            Gipyhy Image Gallery
-          </Typography>
+          <Grid container direction="row" justifyContent='center' alignItems='center' >
+            <CameraIcon sx={{ mr: 2}} />
+            <Typography variant="h6" color="inherit" noWrap>
+              Gipyhy Image Gallery
+            </Typography>
+          </Grid>
         </Toolbar>
       </AppBar>
       <Box
@@ -46,7 +48,7 @@ function App() {
         <Container maxWidth="lg">
           <Grid container direction="row"
             justifyContent='center' alignItems='center'>
-            <Grid item xs={4} >
+            <Grid item xs={4} sx={{mb: 4}} >
               <ImageSearch onSearchQueryChange={onSearchQueryChange} />
             </Grid>
             <Grid item xs={12}>

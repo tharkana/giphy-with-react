@@ -1,4 +1,4 @@
-import { InputAdornment, TextField } from '@mui/material';
+import { FilledInput, FormControl, Input, InputAdornment, InputLabel, OutlinedInput, TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import debounce from 'lodash/debounce';
 import React from 'react';
@@ -21,10 +21,19 @@ export const ImageSearch: React.FunctionComponent<ImageSearchProps> = ({ onSearc
     }
 
     return (
-        <TextField id="searchbox" label="Search" variant="standard" onChange={handleChange} value={searchText} >
-            <InputAdornment position="start">
-                <SearchIcon />
-            </InputAdornment>
-        </TextField>
+        <FormControl fullWidth variant="standard">
+            <InputLabel>
+               Search
+            </InputLabel>
+            <Input
+                id="input-with-icon-adornment"
+                endAdornment={
+                    <InputAdornment position="end">
+                        <SearchIcon />
+                    </InputAdornment>
+                }
+            />
+        </FormControl>
+
     )
 }
