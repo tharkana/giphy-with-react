@@ -1,5 +1,5 @@
 # Setup
 
 1. copy example.env => .env
-    - Add  GIPHY_TOKEN
+    - Add  REACT_APP_GIPHY_TOKEN
 2. run `npm start`
