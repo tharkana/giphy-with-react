@@ -1,6 +1,6 @@
 
 import * as React from 'react';
-import { Card, CardContent, CardMedia, Grid, Link, Modal, Typography } from '@mui/material';
+import { Card, CardContent, CardMedia, Grid, Link, Modal, Skeleton, Typography } from '@mui/material';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import CodeIcon from '@mui/icons-material/Code';
 import Box from '@mui/material/Box';
@@ -30,6 +30,8 @@ const style = {
 export const ImageModal: React.FunctionComponent<ImageModalProps> = ({ openModal, item, modalHandleClose }) => {
 
     const [open, setOpen] = React.useState(false);
+    const [isLoading, setIsLoading] = React.useState(true);
+
     const handleClose = () => {
         setOpen(false);
         modalHandleClose();
@@ -38,6 +40,10 @@ export const ImageModal: React.FunctionComponent<ImageModalProps> = ({ openModal
     React.useEffect(() => {
         setOpen(openModal);
     }, [openModal]);
+
+    const handleImageLoaded = () => {
+        setIsLoading(false);
+    }
 
     const size = Math.round(parseInt(item.images.original.mp4_size) / 1024);
 
@@ -52,13 +58,21 @@ export const ImageModal: React.FunctionComponent<ImageModalProps> = ({ openModal
 
 
                 <Card
-                    sx={{ height: '100%', display: 'flex', flexDirection: 'column', p: 2 }}
+                    sx={{ height: '90%', display: 'flex', flexDirection: 'column', p: 2 }}
                 >
 
                     <Typography gutterBottom variant="h5" component="div">
                         {item?.title}
                     </Typography>
+                    {isLoading &&
+                        <div>
+                            <Skeleton variant="rectangular"
+                                height="100%"
+                                width="100%" />
+                        </div>
+                    }
                     <CardMedia
+                        onLoadedData={handleImageLoaded}
                         component="video"
                         height="100%"
                         width="100%"
@@ -86,7 +100,7 @@ export const ImageModal: React.FunctionComponent<ImageModalProps> = ({ openModal
                             </Grid>
                             <Grid item xs={12} >
                                 <Grid container direction="row" alignItems="center">
-                                    <CodeIcon sx={{mr:1}} />
+                                    <CodeIcon sx={{ mr: 1 }} />
                                     <Link
                                         component="button"
                                         variant="body2"
