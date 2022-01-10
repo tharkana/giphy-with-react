@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Container, ImageList } from '@mui/material';
-import { useImageFetch } from '../hooks/useImageFetch';
-import { ImageModal } from './ImageModal';
+import { useImageFetch } from '../../hooks/useImageFetch';
+import { ImageModal } from '../ImageModal';
 import { IGif } from '@giphy/js-types';
-import { GiphyImage } from './GiphyImage';
+import { GiphyImage } from '../GiphyImage';
 
 interface GiphyImageListProps {
     searchQuery: string | undefined;
