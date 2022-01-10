@@ -52,7 +52,9 @@ export const GiphyImageList: React.FunctionComponent<GiphyImageListProps> = ({ s
 
     return (
         <Container>
-            <ImageModal openModal={open} item={item} modalHandleClose={modalHandleClose} />
+            {
+                item &&  <ImageModal openModal={open} item={item} modalHandleClose={modalHandleClose} />
+            }
             <ImageList variant="masonry" cols={4} gap={2} >
                 {imageList.map((item) => (
                     <GiphyImage

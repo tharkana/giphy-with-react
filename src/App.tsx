@@ -9,7 +9,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import SvgIcon from '@mui/material/SvgIcon';
 import { ReactComponent as GiphyLogo } from './giphy-logo.svg';
 
-import './App.css';
+import './App.scss';
 import { GiphyImageList } from './components/GiphyImageList';
 import { ImageSearch } from './components/ImageSearch';
 import { Grid } from '@mui/material';
