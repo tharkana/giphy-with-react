@@ -26,6 +26,7 @@ export const ImageSearch: React.FunctionComponent<ImageSearchProps> = ({ onSearc
                Search
             </InputLabel>
             <Input
+                data-testid="image-search"
                 id="input-with-icon-adornment"
                 onChange={handleChange}
                 value={searchText}
