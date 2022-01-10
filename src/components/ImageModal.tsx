@@ -1,6 +1,6 @@
 
 import * as React from 'react';
-import { Card, CardContent, CardMedia, Modal, Typography } from '@mui/material';
+import { Card, CardMedia, Modal } from '@mui/material';
 import Box from '@mui/material/Box';
 import { IGif } from '@giphy/js-types';
 

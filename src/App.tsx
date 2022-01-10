@@ -3,10 +3,11 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
-import CameraIcon from '@mui/icons-material/PhotoCamera';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import CssBaseline from '@mui/material/CssBaseline';
+import SvgIcon from '@mui/material/SvgIcon';
+import { ReactComponent as GiphyLogo } from './giphy-logo.svg';
 
 import './App.css';
 import { GiphyImageList } from './components/GiphyImageList';
@@ -28,12 +29,12 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <AppBar position="relative">
+      <AppBar position="relative" sx={{ background: "linear-gradient(45deg, rgb(230, 70,182) 0%, rgb(97, 87, 255) 100%);" }}>
         <Toolbar>
           <Grid container direction="row" justifyContent='center' alignItems='center' >
-            <CameraIcon sx={{ mr: 2}} />
+            <SvgIcon component={GiphyLogo} sx={{ mr: 2}} inheritViewBox />
             <Typography variant="h6" color="inherit" noWrap>
-              Gipyhy Image Gallery
+              Giphy Image Gallery
             </Typography>
           </Grid>
         </Toolbar>

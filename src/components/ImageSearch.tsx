@@ -1,4 +1,4 @@
-import { FilledInput, FormControl, Input, InputAdornment, InputLabel, OutlinedInput, TextField } from '@mui/material';
+import { FormControl, Input, InputAdornment, InputLabel } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import debounce from 'lodash/debounce';
 import React from 'react';
@@ -27,6 +27,8 @@ export const ImageSearch: React.FunctionComponent<ImageSearchProps> = ({ onSearc
             </InputLabel>
             <Input
                 id="input-with-icon-adornment"
+                onChange={handleChange}
+                value={searchText}
                 endAdornment={
                     <InputAdornment position="end">
                         <SearchIcon />

@@ -1,9 +1,9 @@
-
 import * as React from 'react';
-import { Container, ImageList, ImageListItem } from '@mui/material';
+import { Container, ImageList } from '@mui/material';
 import { useImageFetch } from '../hooks/useImageFetch';
 import { ImageModal } from './ImageModal';
 import { IGif } from '@giphy/js-types';
+import { GiphyImage } from './GiphyImage';
 
 interface GiphyImageListProps {
     searchQuery: string | undefined;
@@ -29,7 +29,7 @@ export const GiphyImageList: React.FunctionComponent<GiphyImageListProps> = ({ s
         if (target.isIntersecting) {
             fetchMore();
         }
-    }, []);
+    }, [fetchMore]);
 
     React.useEffect(() => {
         const option = {
@@ -41,9 +41,7 @@ export const GiphyImageList: React.FunctionComponent<GiphyImageListProps> = ({ s
         if (loader && loader.current) observer.observe(loader.current);
     }, [handleObserver]);
 
-    const imageOnClick = (event: any) => {
-        console.log(open);
-        const item: IGif = JSON.parse(event.target.dataset.param);
+    const imageOnClick = (item: IGif) => {
         setItem(item);
         setOpen(true);
     }
@@ -54,18 +52,14 @@ export const GiphyImageList: React.FunctionComponent<GiphyImageListProps> = ({ s
 
     return (
         <Container>
-            <ImageModal openModal={open} item={item} modalHandleClose={modalHandleClose}/>
+            <ImageModal openModal={open} item={item} modalHandleClose={modalHandleClose} />
             <ImageList variant="masonry" cols={4} gap={2} >
                 {imageList.map((item) => (
-                    <ImageListItem key={item.id}>
-                        <img
-                            data-param={JSON.stringify(item)}
-                            onClick={imageOnClick}
-                            src={item.images.downsized_medium.url}
-                            height={item.images.downsized_medium.height}
-                            width={item.images.downsized_medium.width}
-                        />
-                    </ImageListItem>
+                    <GiphyImage
+                        key={item.id as string}
+                        image={item}
+                        onClick={imageOnClick}
+                    />
                 ))}
             </ImageList>
             {loading && <p>Loading...</p>}
