@@ -1,7 +1,8 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 import { GiphyImageList } from './index';
 import * as useImageFetchHook from '../../hooks/useImageFetch';
+import { mockTrendingGiphyResponse } from '../../__mocks__/imageMockData';
 
 
 const mockFetchMoreFn = jest.fn()
@@ -40,5 +41,36 @@ describe('test GiphyImageList', () => {
 
         expect(loadingComponent.length).toEqual(0);
 
+    });
+
+    test('should readner image list', async () => {
+        jest.spyOn(useImageFetchHook, 'useImageFetch').mockImplementation(() => ({
+            ...mockHookReturnObject,
+            list: mockTrendingGiphyResponse.data as any,
+        }));
+        const imageList = render(<GiphyImageList searchQuery={searchQuery} />);
+
+        const renderedImageList = imageList.queryAllByRole('img');
+
+        expect(renderedImageList.length).toEqual(mockTrendingGiphyResponse.data.length);
+    });
+
+    test('should open modal when user click the image', async () => {
+        jest.spyOn(useImageFetchHook, 'useImageFetch').mockImplementation(() => ({
+            ...mockHookReturnObject,
+            list: mockTrendingGiphyResponse.data as any,
+        }));
+        const imageList = render(<GiphyImageList searchQuery={searchQuery} />);
+
+        const renderedImageList = imageList.queryAllByRole('img');
+
+        const firstImage = renderedImageList[0];
+
+        expect(firstImage).toBeInTheDocument();
+
+        fireEvent.click(firstImage);
+
+        expect(screen.getByText(mockTrendingGiphyResponse.data[0].title)).toBeInTheDocument();
+        
     });
 });

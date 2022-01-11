@@ -58,6 +58,7 @@ export const GiphyImageList: React.FunctionComponent<GiphyImageListProps> = ({ s
             <ImageList variant="masonry" cols={4} gap={2} >
                 {imageList.map((item) => (
                     <GiphyImage
+                        data-testid="list-item-image"
                         key={item.id as string}
                         image={item}
                         onClick={imageOnClick}
