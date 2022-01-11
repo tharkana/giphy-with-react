@@ -26,7 +26,7 @@ describe('test GiphyImageList', () => {
         const imageList = render(<GiphyImageList searchQuery={searchQuery} />);
 
 
-        expect(imageList.getByText("Loading...")).toBeInTheDocument();
+        expect(imageList.getByTestId("image-loader")).toBeInTheDocument();
 
     });
 
@@ -37,7 +37,7 @@ describe('test GiphyImageList', () => {
         }));
         const imageList = render(<GiphyImageList searchQuery={searchQuery} />);
 
-        const loadingComponent = imageList.queryAllByText("Loading...");
+        const loadingComponent = imageList.queryAllByTestId("image-loader");
 
         expect(loadingComponent.length).toEqual(0);
 

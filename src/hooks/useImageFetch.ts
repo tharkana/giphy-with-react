@@ -3,8 +3,8 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { LIMIT_PER_PAGE } from '../constant';
 import { GiphyService } from '../services';
 
-const hasMore = (totalCount:number, currentOffset:number | undefined) => (currentOffset === undefined || totalCount === 0 ||
-        totalCount > (currentOffset * LIMIT_PER_PAGE + LIMIT_PER_PAGE));
+const hasMore = (totalCount: number, currentOffset: number | undefined) => (currentOffset === undefined || totalCount === 0 ||
+    totalCount > (currentOffset * LIMIT_PER_PAGE + LIMIT_PER_PAGE));
 
 
 export const useImageFetch = (
@@ -24,8 +24,11 @@ export const useImageFetch = (
 
     const sendQuery = useCallback(async () => {
         try {
-            await setLoading(true);
-            await setError(false);
+            if (currentQueryRef.current !== query) {
+                setList([]);
+            }
+            setLoading(true);
+            setError(false);
             const res = await GiphyService.fetchGifs(offset, query);
             setLoading(false);
 

@@ -1,9 +1,11 @@
 import * as React from 'react';
-import { Container, ImageList } from '@mui/material';
+import { Container, LinearProgress } from '@mui/material';
+import Masonry from '@mui/lab/Masonry';
 import { useImageFetch } from '../../hooks/useImageFetch';
 import { ImageModal } from '../ImageModal';
 import { IGif } from '@giphy/js-types';
 import { GiphyImage } from '../GiphyImage';
+import { Box } from '@mui/system';
 
 interface GiphyImageListProps {
     searchQuery: string | undefined;
@@ -53,9 +55,9 @@ export const GiphyImageList: React.FunctionComponent<GiphyImageListProps> = ({ s
     return (
         <Container>
             {
-                item &&  <ImageModal openModal={open} item={item} modalHandleClose={modalHandleClose} />
+                item && <ImageModal openModal={open} item={item} modalHandleClose={modalHandleClose} />
             }
-            <ImageList variant="masonry" cols={4} gap={2} >
+            <Masonry columns={4} spacing={2} >
                 {imageList.map((item) => (
                     <GiphyImage
                         data-testid="list-item-image"
@@ -64,8 +66,13 @@ export const GiphyImageList: React.FunctionComponent<GiphyImageListProps> = ({ s
                         onClick={imageOnClick}
                     />
                 ))}
-            </ImageList>
-            {loading && <p>Loading...</p>}
+            </Masonry>
+            {loading &&
+                <Box sx={{ width: '100%' }}>
+                    <LinearProgress data-testid="image-loader" />
+                </Box>
+
+            }
             {imageError && <p>Error!</p>}
             <div ref={loader} />
         </Container>

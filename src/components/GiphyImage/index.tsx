@@ -26,7 +26,7 @@ export const GiphyImage: React.FunctionComponent<GiphyImageProps> = ({ image, on
                 <div>
                     <Skeleton variant="rectangular"
                         height={image.images.downsized_medium.height}
-                        width={image.images.downsized_medium.width} />
+                        width='100%' />
                 </div>
             }
 

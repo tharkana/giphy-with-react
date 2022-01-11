@@ -1,6 +1,6 @@
 
 import * as React from 'react';
-import { Card, CardContent, CardMedia, Grid, Link, Modal, Skeleton, Typography } from '@mui/material';
+import { Card, CardMedia, Grid, Link, Modal, Skeleton, Typography } from '@mui/material';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import CodeIcon from '@mui/icons-material/Code';
 import Box from '@mui/material/Box';
@@ -55,15 +55,12 @@ export const ImageModal: React.FunctionComponent<ImageModalProps> = ({ openModal
             aria-describedby="modal-modal-description"
         >
             <Box sx={style as any}>
-
-
+                <Typography gutterBottom variant="h5" component="div">
+                    {item?.title}
+                </Typography>
                 <Card
-                    sx={{ height: '90%', display: 'flex', flexDirection: 'column', p: 2 }}
+                    sx={{ height: '90%', display: 'flex', flexDirection: 'column', p: 1, m:2 }}
                 >
-
-                    <Typography gutterBottom variant="h5" component="div">
-                        {item?.title}
-                    </Typography>
                     {isLoading &&
                         <div>
                             <Skeleton variant="rectangular"
@@ -81,40 +78,39 @@ export const ImageModal: React.FunctionComponent<ImageModalProps> = ({ openModal
                         loop
                         playsInline
                     />
-                    <CardContent>
-                        <Grid container direction='row'>
-                            <Grid item xs={12} sx={{ mb: 1 }}> {item.images.original.height}x{item.images.original.width}px | {size}KB </Grid>
-                            <Grid item xs={12} sx={{ mb: 1 }} >
-                                <Grid container direction="row" alignItems="center">
-                                    <ContentCopyIcon sx={{ mr: 1 }} />
-                                    <Link
-                                        component="button"
-                                        variant="body2"
-                                        onClick={() => {
-                                            navigator.clipboard.writeText(item.bitly_url)
-                                        }}
-                                    >
-                                        Copy URL
-                                    </Link>
-                                </Grid>
-                            </Grid>
-                            <Grid item xs={12} >
-                                <Grid container direction="row" alignItems="center">
-                                    <CodeIcon sx={{ mr: 1 }} />
-                                    <Link
-                                        component="button"
-                                        variant="body2"
-                                        onClick={() => {
-                                            navigator.clipboard.writeText(item.embed_url)
-                                        }}
-                                    >
-                                        Copy Embedded URL
-                                    </Link>
-                                </Grid>
-                            </Grid>
-                        </Grid>
-                    </CardContent>
                 </Card>
+
+                <Grid container direction='row'>
+                    <Grid item xs={12} sx={{ mb: 1 }}> {item.images.original.height}x{item.images.original.width}px | {size}KB </Grid>
+                    <Grid item xs={12} sx={{ mb: 1 }} >
+                        <Grid container direction="row" alignItems="center">
+                            <ContentCopyIcon sx={{ mr: 1 }} />
+                            <Link
+                                component="button"
+                                variant="body2"
+                                onClick={() => {
+                                    navigator.clipboard.writeText(item.bitly_url)
+                                }}
+                            >
+                                Copy URL
+                            </Link>
+                        </Grid>
+                    </Grid>
+                    <Grid item xs={12} >
+                        <Grid container direction="row" alignItems="center">
+                            <CodeIcon sx={{ mr: 1 }} />
+                            <Link
+                                component="button"
+                                variant="body2"
+                                onClick={() => {
+                                    navigator.clipboard.writeText(item.embed_url)
+                                }}
+                            >
+                                Copy Embedded URL
+                            </Link>
+                        </Grid>
+                    </Grid>
+                </Grid>
 
             </Box>
         </Modal>
